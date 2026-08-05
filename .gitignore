@@ -35,10 +35,3 @@ coverage/
 # Temporary files
 *.tmp
 *.temp
-
-# Public images
-public/images/
-
-# App assets images
-app/assets/images/
-
