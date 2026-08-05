@@ -1,0 +1,186 @@
+@use "../abstracts/variables" as *;
+
+.main-header {
+ position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  transition: all 0.4s ease;
+   background: rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+
+  &.sticky {
+    background: #ffffff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+
+    .menu li a {
+      color: #192535;
+    }
+
+    .logo h3 {
+      color: #192535;
+    }
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* =========================
+     LOGO
+  ========================= */
+  .logo h3 {
+    color: #ffffff;
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  /* =========================
+     MENU
+  ========================= */
+  .menu {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    position: relative;
+
+    a {
+      position: relative;
+      color: $primary-black;
+      font-family: $primary_regular;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 400;
+      padding: 6px 0;
+      transition: all 0.3s ease;
+    }
+
+    /* Underline Effect */
+    a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0%;
+      height: 2px;
+      background: $primary_blue;
+      transition: width 0.35s ease;
+      border-radius: 10px;
+    }
+
+    a:hover::after {
+      width: 100%;
+    }
+
+    a:hover {
+      color: $primary_blue;
+    }
+
+    /* =========================
+       DROPDOWN MENU
+    ========================= */
+    &.dropdown {
+      .dropdown-toggle {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        &::after {
+          position: static;
+          width: auto;
+          height: auto;
+          margin-left: 4px;
+          border-top: 0.35em solid currentColor;
+          border-right: 0.35em solid transparent;
+          border-left: 0.35em solid transparent;
+          background: none;
+          transition: transform 0.3s ease;
+        }
+      }
+
+      &:hover .dropdown-toggle::after {
+        transform: rotate(180deg);
+      }
+
+      .dropdown-menu {
+        border: none;
+        min-width: 260px;
+        border-radius: 16px;
+        padding: 10px 0;
+        margin-top: 15px;
+        background: #fff;
+        
+        
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+
+        opacity: 0;
+        visibility: hidden;
+        display: block;
+        transform: translateY(15px);
+        transition: all 0.3s ease;
+      }
+
+      &:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .dropdown-item {
+        padding: 12px 20px !important;
+        font-weight: 500;
+        font-family: $primary_regular;
+        text-decoration: none;
+        font-size: 16px;
+        transition: all 0.3s ease;
+
+        &::after {
+          display: none;
+        }
+
+        &:hover {
+          background: rgba($primary_blue, 0.08);
+          color: $primary_blue;
+          padding-left: 28px !important;
+        }
+      }
+    }
+  }
+}
+}
+
+/* =========================
+   NAVBAR BASE
+========================= */
+.navbar {
+  padding: 8px 0;
+  transition: all 0.3s ease;
+}
+
+.navbar.bg-white .nav-link {
+  color: #192535 !important;
+}
+
+.navbar.bg-white .nav-link:hover {
+  color: $primary_blue !important; // ✅ CHANGED HERE
+}
+
+/* =========================
+   ACTIVE MENU STATE
+========================= */
+.menu li a.active::after {
+  width: 100%;
+  background: $primary_blue; // optional consistency
+}
+
+.menu li a.active {
+  color: $primary_blue !important;
+}

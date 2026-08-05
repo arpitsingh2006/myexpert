@@ -1,0 +1,23 @@
+@use './base/fonts';
+@use './abstracts/variables';
+@use './base/global';
+
+
+@use './components/header';
+@use './components/footer';
+@use './components/buttons';
+
+@use './pages/home';
+@use './pages/service';
+@use './pages/about';
+@use './pages/contact';
+@use './pages/blog';
+@use './pages/blogdetail';
+@use './pages/testimonials';
+@use './pages/travelgallery';
+@use './pages/booking';
+@use './pages/cabbooking';
+@use './pages/destination';
+@use './abstracts/media';
+
+

@@ -1,0 +1,60 @@
+@use "../abstracts/variables" as *;
+@use "../base/fonts" as *;
+@use "../base/typography" as *;
+.section-16 {
+
+  .blog-card {
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    }
+
+    .blog-img img {
+      height: 220px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .blog-title {
+      font-size: 16px;
+      font-weight: 800;
+      min-height: 42px;
+      line-height: 1.5rem;
+      color: $primary_black;
+      font-family: $primary_semiBold;
+    }
+
+    .blog-desc {
+      font-size: 16px;
+      color: $primary_para_color;
+      min-height: 60px;
+    }
+
+    .btn {
+      padding: 7px 20px;
+      font-size: 14px;
+    }
+  }
+
+  .search-box {
+    .form-control {
+      padding-left: 35px;
+      border-radius: 8px;
+    }
+
+    .search-icon {
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+      color: #999;
+    }
+  }
+}

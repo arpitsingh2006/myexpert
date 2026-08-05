@@ -1,0 +1,171 @@
+@use "../abstracts/variables" as *;
+
+
+.btn{
+    padding: 10px 15px;
+    background: transparent;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: $primary_regular;
+    color: $primary-white;
+    font-weight: 500;
+    transition: .4s;
+    i {
+        transition: .35s;
+    }
+}
+.btn-primary{
+    background: $primary-blue;
+    border: 2px solid $primary-blue;
+    border-radius: 8px;
+    color: $primary-white;
+    transition: all .45s cubic-bezier(.22,.61,.36,1);
+    &:hover {
+        color: $primary-white;
+        transform: translateY(-4px);
+        box-shadow: 0 15px 35px rgba(37,99,235,.25);
+    }
+
+    &:active {
+        transform: translateY(-1px);
+    }
+
+    &:focus {
+        box-shadow:
+        0 0 0 4px rgba(37,99,235,.15),
+        0 15px 35px rgba(37,99,235,.20);
+    }
+
+    i {
+        transition: transform .4s ease;
+    }
+
+    &:hover i {
+        transform: translateX(4px);
+    }
+}
+.btn-primary-outline{
+    background: $primary-white;
+    border: 2px solid $primary-blue;
+    border-radius: 8px;
+    color: $primary-blue;
+    overflow: hidden;
+    transition: .45s;
+    &::before {
+        content: "";
+       
+        position: absolute;
+        inset: 0;
+        background: $primary-blue;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: .45s;
+        z-index: -1;
+    }
+
+    &:hover {
+        color: #fff;
+        background: $primary-blue;
+        transform: translateY(-4px);
+    }
+
+    &:hover::before {
+        transform: scaleX(1);
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 4px rgba(37,99,235,.15);
+    }
+}
+
+.btn-secondary{
+    background: $primary-black;
+    border: 1px solid $primary-black;
+    border-radius: 8px;
+    color: $primary-white;
+    border: 2px solid transparent;
+    &:hover {
+        color: #fff;
+        transform: translateY(-4px);
+        box-shadow:
+        0 15px 40px rgba(0,0,0,.18),
+        0 0 0 1px rgba(255,255,255,.05) inset;
+        background:$primary-white!important;
+        color: $primary-black!important;
+        border: 2px solid $primary-black!important;
+      
+        
+    }
+
+    i {
+        transition: .35s;
+    }
+
+    &:hover i {
+        transform: rotate(-10deg);
+    }
+}
+.btn-secondry-outline{
+    background: $primary-white;
+    border: 2px solid $primary-black;
+    border-radius: 8px;
+    color: $primary-black;
+    &:hover {
+        background: $primary-black;
+        color: #fff;
+        transform: translateY(-4px);
+    }
+
+    &:hover i {
+        transform: scale(1.15);
+    }
+
+    i {
+        transition: .35s;
+    }
+}
+.btn-white{
+    background: $primary-white;
+    border: 1px solid $primary-white;
+    border-radius: 8px;
+    color: $primary-black;
+    backdrop-filter: blur(10px);
+    transition: .45s;
+    &:hover {
+        transform: translateY(-4px);
+        background: #fff;
+        box-shadow: 0 15px 35px rgba(255,255,255,.25);
+    }
+
+}
+.btn-white-seconday{
+    background: transparent;
+    border: 2px solid $primary-white;
+    border-radius: 8px;
+    color: $primary-white;
+    &:hover{
+        background: $primary-blue;
+        color: $primary-white;
+        border: 2px solid $primary-blue;
+    }
+}
+.btn-radius{
+    border-radius: 8px!important;
+}
+.btn-whatsapp{
+    background:$primary-light-green;
+    border: 2px solid $primary-light-green;
+     &:hover{
+        background: $primary-black;
+        color: $primary-white;
+        border: 2px solid $primary-black;
+    }
+}
+
+
+// @media (min-width: 350px) and (max-width: 1199px) {
+//     .btn{
+//         padding: 5px 10px;
+//         font-size: 14px;
+//     }
+// }

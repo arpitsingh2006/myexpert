@@ -1,0 +1,44 @@
+# Dependencies
+node_modules/
+
+# Next.js build
+.next/
+out/
+
+# Environment files
+.env*
+!.env.example
+
+# Logs
+*.log
+
+# macOS
+.DS_Store
+
+# IDE / Editors
+.vscode/
+.idea/
+
+# TypeScript
+*.tsbuildinfo
+
+# Test / Coverage
+coverage/
+
+# Cache files
+.cache/
+.turbo/
+
+# Vercel
+.vercel/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Public images
+public/images/
+
+# App assets images
+app/assets/images/
+
