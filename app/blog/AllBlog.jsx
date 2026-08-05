@@ -28,9 +28,9 @@ export default function AllBlog() {
                     .map((item) => ({
                         ...item,
 
-                        featured_image: item.featured_image?.replace("http://expert.test", "http://expert-dev.test"),
+                        featured_image: item.featured_image?.replace("http://expert.test", "https://expert.vikashproduction.com/"),
 
-                        banner_image: item.banner_image?.replace("http://expert.test", "http://expert-dev.test"),
+                        banner_image: item.banner_image?.replace("http://expert.test", "https://expert.vikashproduction.com/"),
                     }));
 
                 setBlogs(data);

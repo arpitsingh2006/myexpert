@@ -1,4 +1,4 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://expert-dev.test";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://expert.vikashproduction.com/";
 
 
 // GET API

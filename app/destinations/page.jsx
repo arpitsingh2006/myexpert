@@ -23,7 +23,7 @@ export default function DestinationsPage() {
           .map((item) => ({
             ...item,
             icon: item.icon
-              ?.replace("http://expert.test", "http://expert-dev.test")
+              ?.replace("http://expert.test", "https://expert.vikashproduction.com/")
               ?.replace("/destination-features/", "/destination-feature/"),
           }));
 
