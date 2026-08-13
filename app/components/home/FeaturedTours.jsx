@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -144,156 +145,184 @@ export default function FeaturedTours() {
 
 
           {
-            packages.map((item)=>(
+            packages.map((item)=>{
+
+              const detailHref = `/packages/${item.slug}`;
+
+              const bookingHref = `/booking?packageId=${item.id}&packageName=${encodeURIComponent(item.package_name)}&category=${encodeURIComponent(item.category_name || item.category?.name || "")}&basePrice=${item.price_per_person}`;
+
+              return (
 
 
-              <div 
-                className="col-xl-4 col-lg-4 col-md-6 mb-4"
-                key={item.id}
-                data-aos="fade-up"
-              >
+                <div 
+                  className="col-xl-4 col-lg-4 col-md-6 mb-4"
+                  key={item.id}
+                  data-aos="fade-up"
+                >
 
 
-                <div className="travel-card">
+                  <div className="travel-card">
 
 
-                  <div
-                    className="travel-card-img"
-                    style={{
-                      backgroundImage:`url(${item.image})`
-                    }}
-                  />
+                    <Link href={detailHref}>
+
+                      <div
+                        className="travel-card-img"
+                        style={{
+                          backgroundImage:`url(${item.image})`
+                        }}
+                      />
+
+                    </Link>
 
 
 
-                  <div className="travel-card-content">
+                    <div className="travel-card-content">
 
 
 
-                    <div className="d-flex justify-content-between location-text my-3">
+                      <div className="d-flex justify-content-between location-text my-3">
 
 
-                      <div className="d-flex align-items-center">
+                        <div className="d-flex align-items-center">
 
-                        <span className="bi bi-geo-alt pe-2"></span>
+                          <span className="bi bi-geo-alt pe-2"></span>
 
-                        <span>
-                          {item.location}
-                        </span>
+                          <span>
+                            {item.location}
+                          </span>
+
+                        </div>
+
+
+
+                        <div className="d-flex align-items-center ms-2">
+
+                          <span className="bi bi-stopwatch pe-2"></span>
+
+                          <span>
+                            {item.duration_string}
+                          </span>
+
+                        </div>
+
 
                       </div>
 
 
 
-                      <div className="d-flex align-items-center ms-2">
-
-                        <span className="bi bi-stopwatch pe-2"></span>
-
-                        <span>
-                          {item.duration_string}
-                        </span>
-
-                      </div>
 
 
-                    </div>
+                      <div className="card-title mb-xl-4 mb-2">
 
 
+                        <Link
+                          href={detailHref}
+                          style={{ textDecoration: "none", color: "inherit" }}
+                        >
+                          <h3>
+                            {item.package_name}
+                          </h3>
+                        </Link>
 
 
-
-                    <div className="card-title mb-xl-4 mb-2">
-
-
-                      <h3>
-                        {item.package_name}
-                      </h3>
-
-
-                      <p>
-                        {item.description}
-                      </p>
-
-
-                    </div>
-
-
-
-
-
-                    <div className="book-text">
-
-
-                      <div className="d-xl-flex justify-content-xl-between align-items-xl-center">
-
-
-                        <div className="price">
-
+                        <Link
+                          href={detailHref}
+                          style={{ textDecoration: "none", color: "inherit" }}
+                        >
                           <p>
-                            Starting from
+                            {item.description}
                           </p>
+                        </Link>
 
 
-                          <div className="d-flex align-items-center gap-2">
-
-
-                            <del className="old-price">
-
-                              ₹
-                              {Number(item.price_per_person)+3000}
-
-                            </del>
+                      </div>
 
 
 
-                            <b>
-                              ₹{item.price_per_person}
-                            </b>
+
+
+                      <div className="book-text">
+
+
+                        <div className="d-xl-flex justify-content-xl-between align-items-xl-center">
+
+
+                          <Link
+                            href={detailHref}
+                            className="price"
+                            style={{ textDecoration: "none", color: "inherit" }}
+                          >
+
+                            <p>
+                              Starting from
+                            </p>
+
+
+                            <div className="d-flex align-items-center gap-2">
+
+
+                              <del className="old-price">
+
+                                ₹
+                                {Number(item.price_per_person)+3000}
+
+                              </del>
+
+
+
+                              <b>
+                                ₹{item.price_per_person}
+                              </b>
+
+
+                            </div>
+
+
+                          </Link>
+
+
+
+
+
+                          <div className="d-flex gap-2">
+
+
+                            
+                              <a href="tel:+911234567890"
+                              className="btn btn-primary"
+                              title="Call Now"
+                            >
+
+                              <i className="bi bi-telephone-fill"></i>
+
+                            </a>
+
+
+
+
+                            <Link
+                              href={bookingHref}
+                              className="btn btn-secondary"
+                            >
+
+                              Book Now
+
+                              <i className="bi bi-arrow-right ps-2"></i>
+
+                            </Link>
+
 
 
                           </div>
 
 
-                        </div>
-
-
-
-
-
-                        <div className="d-flex gap-2">
-
-
-                          <a
-                            href="tel:+911234567890"
-                            className="btn btn-primary"
-                            title="Call Now"
-                          >
-
-                            <i className="bi bi-telephone-fill"></i>
-
-                          </a>
-
-
-
-
-                          <a
-                            href={`/packages/${item.slug}`}
-                            className="btn btn-secondary"
-                          >
-
-                            Book Now
-
-                            <i className="bi bi-arrow-right ps-2"></i>
-
-                          </a>
-
-
 
                         </div>
-
 
 
                       </div>
+
 
 
                     </div>
@@ -303,14 +332,12 @@ export default function FeaturedTours() {
                   </div>
 
 
-
                 </div>
 
 
-              </div>
+              );
 
-
-            ))
+            })
           }
 
 

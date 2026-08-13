@@ -35,7 +35,7 @@ export default function PopularDestination() {
             ...item,
             icon: item.icon
               ? item.icon
-                  .replace("http://expert.test", "https://expert.vikashproduction.com/")
+                  .replace("http://expert.test", "https://expert.vikashproduction.com")
                   .replace("/destination-features/", "/destination-feature/")
               : "/images/no-image.jpg",
           }));

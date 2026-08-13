@@ -5,7 +5,7 @@
 
 const API_URL = (
   process.env.NEXT_PUBLIC_API_URL ||
-  "https://expert.vikashproduction.com/"
+  "https://expert.vikashproduction.com"
 ).replace(/\/$/, "");
 
 // GET API
