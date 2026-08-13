@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -148,10 +149,13 @@ export default function FeaturedTours() {
                                                     <i className="bi bi-telephone-fill"></i>
                                                 </a>
 
-                                                <a href={`/packages/${item.slug}`} className="btn btn-secondary">
+                                                <Link
+                                                    href={`/booking?packageId=${item.id}&packageName=${encodeURIComponent(item.package_name)}&category=${encodeURIComponent(item.category_name || item.category?.name || "")}&basePrice=${item.price_per_person}`}
+                                                    className="btn btn-secondary"
+                                                >
                                                     Book Now
                                                     <i className="bi bi-arrow-right ps-2"></i>
-                                                </a>
+                                                </Link>
                                             </div>
                                         </div>
                                     </div>

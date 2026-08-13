@@ -1,8 +1,12 @@
-const API_URL = (
-    process.env.NEXT_PUBLIC_API_URL ||
-    "https://expert.vikashproduction.com"
-).replace(/\/$/, "");
+// const API_URL = (
+//     process.env.NEXT_PUBLIC_API_URL ||
+//     "https://expert.vikashproduction.com"
+// ).replace(/\/$/, "");
 
+const API_URL = (
+  process.env.NEXT_PUBLIC_API_URL ||
+  "https://expert.vikashproduction.com/"
+).replace(/\/$/, "");
 
 // GET API
 export async function apiGet(endpoint) {

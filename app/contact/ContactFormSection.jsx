@@ -83,7 +83,7 @@ export default function ContactFormSection() {
         try {
 
             const response = await fetch(
-                "https://expert.vikashproduction.com/api/contact-leads",
+                "https://expert.vikashproduction.com//api/contact-leads",
                 {
                     method: "POST",
 

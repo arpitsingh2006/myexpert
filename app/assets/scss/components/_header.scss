@@ -22,7 +22,91 @@
       color: #192535;
     }
   }
+  /* ================================
+   Adventure Nested Submenu
+================================ */
+.dropdown-submenu {
+  position: relative;
+}
 
+
+/* Adventure Categories item */
+.dropdown-submenu > .submenu-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+
+/* Arrow */
+.dropdown-submenu .submenu-arrow {
+  font-size: 22px;
+  line-height: 1;
+  margin-left: 15px;
+  transition: transform 0.2s ease;
+}
+
+
+/* Submenu hidden */
+.dropdown-submenu > .dropdown-menu {
+  display: none !important;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  margin: 0;
+
+  /* Maximum height */
+  max-height: 350px;
+
+  /* Scroll when categories are more */
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+
+/* Show submenu on hover */
+.dropdown-submenu:hover > .dropdown-menu {
+  display: block !important;
+}
+
+
+/* Rotate / Move arrow on hover */
+.dropdown-submenu:hover .submenu-arrow {
+  transform: translateX(3px);
+}
+
+
+/* Prevent text wrapping */
+.dropdown-submenu > .submenu-toggle {
+  white-space: nowrap;
+}
+
+
+/* Submenu scrollbar */
+.dropdown-submenu > .dropdown-menu::-webkit-scrollbar {
+  width: 5px;
+}
+
+
+/* Scrollbar thumb */
+.dropdown-submenu > .dropdown-menu::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+
+
+/* Scrollbar track */
+.dropdown-submenu > .dropdown-menu::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+
+/* Firefox scrollbar */
+.dropdown-submenu > .dropdown-menu {
+  scrollbar-width: thin;
+  scrollbar-color: #ccc transparent;
+}
   .header-inner {
     display: flex;
     align-items: center;

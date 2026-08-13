@@ -3,11 +3,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
+import { getPackageCategories } from "@/api/packageCategory";
 import { usePathname } from "next/navigation";
-
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
+  const [packageCategories, setPackageCategories] = useState([]);
+
   const pathname = usePathname();
   const navRef = useRef(null);
 
@@ -18,19 +20,45 @@ export default function Header() {
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  // Get Package Categories
+  useEffect(() => {
+    const fetchPackageCategories = async () => {
+      try {
+        const response = await getPackageCategories();
+
+        if (response?.status) {
+          setPackageCategories(response.data || []);
+        }
+      } catch (error) {
+        console.error(
+          "Failed to fetch package categories:",
+          error
+        );
+      }
+    };
+
+    fetchPackageCategories();
   }, []);
 
   // Close mobile menu on route change
   useEffect(() => {
     const el = navRef.current;
+
     if (el && el.classList.contains("show")) {
       el.classList.remove("show");
     }
   }, [pathname]);
 
   return (
-    <header className={`main-header ${scrolled ? "scrolled" : ""}`}>
+    <header
+      className={`main-header ${scrolled ? "scrolled" : ""}`}
+    >
       <nav
         className={`navbar navbar-expand-lg sheader-inner bg-white ${
           scrolled ? "bg-white" : ""
@@ -41,11 +69,7 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="navbar-brand">
             <Image
-              src={
-                scrolled
-                  ? "/images/color-logo.png"
-                  : "/images/color-logo.png"
-              }
+              src="/images/color-logo.png"
               alt="Wanderlane Logo"
               width={200}
               height={70}
@@ -66,13 +90,22 @@ export default function Header() {
             <span className="navbar-toggler-icon"></span>
           </button>
 
-          {/* ref added here — yahi fix hai */}
-          <div className="collapse navbar-collapse" id="mainMenu" ref={navRef}>
-
+          {/* Main Menu */}
+          <div
+            className="collapse navbar-collapse"
+            id="mainMenu"
+            ref={navRef}
+          >
             <ul className="navbar-nav mx-auto gap-lg-3 menu">
-              <li className="nav-item"><Link href="/" className="nav-link">Home</Link></li>
-              <li className="nav-item"><Link href="/about" className="nav-link">About</Link></li>
-              <li className="nav-item"><Link href="/blog" className="nav-link">Blogs</Link></li>
+
+              {/* Home */}
+              <li className="nav-item">
+                <Link href="/" className="nav-link">
+                  Home
+                </Link>
+              </li>
+
+              {/* Our Services */}
               <li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle"
@@ -82,81 +115,126 @@ export default function Header() {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Pages
+                  Our services
                 </a>
 
-                <ul className="dropdown-menu" aria-labelledby="pageDropdown">
-                 
-                  <li>
-                    <Link href="/travel-gallery" className="dropdown-item">
-                      Travel Gallery
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/testimonials" className="dropdown-item">
-                      Testimonials
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/booking" className="dropdown-item">
-                      Booking
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/cab-booking" className="dropdown-item">
-                      Cab Booking
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-              <li className="nav-item"><Link href="/contact" className="nav-link">Contact</Link></li>
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle"
-                  href="#"
-                  id="servicesDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
+                <ul
+                  className="dropdown-menu"
+                  aria-labelledby="pageDropdown"
                 >
-                  Services
-                </a>
 
-                <ul className="dropdown-menu" aria-labelledby="servicesDropdown">
+                  {/* Tour Packages */}
                   <li>
-                    <Link href="/cabs" className="dropdown-item">
-                      Cab Packages
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/packages" className="dropdown-item">
+                    <Link
+                      href="/packages"
+                      className="dropdown-item"
+                    >
                       Tour Packages
                     </Link>
                   </li>
+
+                  {/* Book Your Cab */}
                   <li>
-                    <Link href="/services" className="dropdown-item">
-                      Package Detail
+                    <Link
+                      href="/cabs"
+                      className="dropdown-item"
+                    >
+                      Book your cab
                     </Link>
                   </li>
-                  <li>
-                    <Link href="/destinations" className="dropdown-item">
-                      Top Destinations
-                    </Link>
+
+                  {/* Adventure Categories */}
+                  <li className="dropdown-submenu">
+                    <a
+                      href="#"
+                      className="dropdown-item submenu-toggle"
+                    >
+                      <span>Adventure Categories</span>
+                      <span className="submenu-arrow">›</span>
+                    </a>
+
+                    {/* Nested Sub Menu */}
+                    <ul className="dropdown-menu">
+                      {packageCategories.map((category) => (
+                        <li key={category.id}>
+                          <Link
+                            href={`/package-category/${category.slug}`}
+                            className="dropdown-item"
+                          >
+                            {category.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
                   </li>
+
+                  
+                  
                 </ul>
               </li>
+
+              {/* Travel Gallery */}
+              <li className="nav-item">
+                <Link
+                  href="/travel-gallery"
+                  className="nav-link"
+                >
+                  Travel Gallery
+                </Link>
+              </li>
+
+              {/* Happy Faces */}
+              <li className="nav-item">
+                <Link
+                  href="/testimonials"
+                  className="nav-link"
+                >
+                  Happy Faces
+                </Link>
+              </li>
+
+              {/* Blogs */}
+              <li className="nav-item">
+                <Link
+                  href="/blog"
+                  className="nav-link"
+                >
+                  Blogs
+                </Link>
+              </li>
+
+              {/* Contact */}
+              <li className="nav-item">
+                <Link
+                  href="/contact"
+                  className="nav-link"
+                >
+                  Contact
+                </Link>
+              </li>
+
             </ul>
 
-            {/* Button with scroll change */}
+            {/* Buttons */}
             <div className="mt-3 mt-lg-0 d-flex align-items-center gap-2">
-              <a href="tel:+919876543210" className="btn btn-primary">
-                <i className="bi bi-telephone-fill pe-2"></i>Speak With Expert
-              </a>
-              <a href="/booking" className="btn btn-secondary">
-                <i className="bi bi-calendar-check-fill pe-2"></i>Book Experience
-              </a>
-            </div>
 
+              <a
+                href="tel:+919876543210"
+                className="btn btn-primary"
+              >
+                <i className="bi bi-telephone-fill pe-2"></i>
+                Speak With Expert
+              </a>
+
+              <a
+                href="/booking"
+                className="btn btn-secondary"
+              >
+                <i className="bi bi-calendar-check-fill pe-2"></i>
+                Book Experience
+              </a>
+
+            </div>
           </div>
         </div>
       </nav>
